@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'main',
+    'blog',
+    'DjangoUeditor',
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -126,3 +128,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = '/Users/ckt/Alex/myblog/'
