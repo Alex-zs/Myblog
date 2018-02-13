@@ -1,20 +1,26 @@
 from django.shortcuts import render
 import json
 from users.models import User
+from blog.models import Article
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+import markdown2
 
 # Create your views here.
 def index(request):
-	return render(request,'basemain.html')
+	blog_list = Article.objects.all().order_by('-update_time')
+	blog_list2 = Paginator(blog_list,5)
+	page = request.GET.get('page')
+	try:
+		contacts = blog_list2.page(page)
+	except PageNotAnInteger:
+		contacts = blog_list2.page(1)
+	except EmptyPage:
+		contacts = blog_list2.page(blog_list2.num_pages)
+	return render(request,'basemain.html',{"contacts":contacts})
 
-def accounts_profile(request):
-	if request.method == 'POST':
-		a = json.loads(request.body)
-		print(a)
-		b = User.objects.get(email=request.user.email)
-		b.name = a['name']
-		b.sex = a['sex']
-		b.birthday = a['birthday']
-		b.phone = a['phone']
-		b.job = a['job']
-		b.save()
-	return render(request, 'accounts_profile.html')
+def detail(request):
+	article_id = request.GET['id']
+	article_id = int(article_id)
+	article = Article.objects.get(id=article_id)
+	article.content = markdown2.markdown(article.content)
+	return render(request,'detail.html',{"article":article})

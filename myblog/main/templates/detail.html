@@ -1,0 +1,11 @@
+
+{% extends 'basemain.html' %}
+{% block content %}
+<div style="text-align: center;"><h2>{{article.title}}</h2>
+<br>
+<div style="text-align: right;">时间：{{article.update_time}}</div>
+</div>
+<br><br>
+<div><p style="font-size: 20px">{{article.content|safe}}</p></div>
+{% endblock %}
+

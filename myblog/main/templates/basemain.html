@@ -23,7 +23,7 @@
 		</div>
 		<div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">首页</a></li>
+			<li class="active"><a href="http://127.0.0.1:8000/">首页</a></li>
 			<li><a href="#">学无止境</a></li>
 			<li><a href="#">生活点滴</a></li>
 			<li><a href="#">留言板</a></li>
@@ -35,18 +35,40 @@
 
 		</div>
 		</nav>				
-	<div class="container jumbotron">
-	<div class="col-md-8 col-md-offset-4">
+	<div class="container jumbotron" style="text-align: left;">
+	<div class="col-md-8 col-md-offset-2">
 		{% block content %}
+			{% for article in contacts %}
+			<div style="color: black">
+			<dl>
+				<dt><h2><a style="color: black" href="detail?id={{article.id}}" >{{ article.title}}</a></h2></dt>
+				<dd><p><a style="font-size: 18px" href="detail?id={{article.id}}">{{article.abstract}}.......</a>
+				<div style="text-align: right;">{{article.update_time}}</div>
+				<br>
+				</p></dd>
+			</dl>
+			</div>
+			{% endfor %}
+				<div class="pagination-simple"> 
 
+ 				{% if contacts.has_previous %} 
+
+ 			<a href="?page={{contacts.previous_page_number }}">上一页</a> 
+
+ 			{% endif %} 
+
+ 			<span class="current">第{{ contacts.number }}页/共{{ contacts.paginator.num_pages }}页</span> 
+
+ 			{% if contacts.has_next %} <a href="?page={{ contacts.next_page_number }}">下一页</a> 
+
+ 			{% endif %}
+
+ 			</div>
 		{% endblock %}
 	</div>
 	</div>
-	<div>
-		{% load staticfiles %}
-		<img src="static/img/flower_20180213062344_219.jpg" alt="flower.jpg">
-	</div>
-	<div class="container text-center jumbotron navbar-fixed-bottom" style="height: 30px;">
+	
+	<div class="container text-center jumbotron  style="height: 30px;">
 		<p style="font-size: 10px;"> Powered by <b> Alex Chen</b><br>
 		 Copyright 2018<a href="mailto:330953853@qq.com"> 联系我们</a></p>
 
