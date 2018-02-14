@@ -19,9 +19,9 @@ from django.contrib import admin
 from main import views as main
 
 urlpatterns = [
-    url(r'^detail/',main.detail),
+    url(r'^detail/',main.detail,name='detail'),
     url(r'^admin/', admin.site.urls),
-    url(r'^$',main.index),
+    url(r'^$',main.indexView.as_view(),name='index'),
     url(r'^ueditor/',include('DjangoUeditor.urls' )),
 ]
 

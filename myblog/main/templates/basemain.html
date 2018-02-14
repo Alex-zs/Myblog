@@ -38,8 +38,8 @@
 	<div class="container jumbotron" style="text-align: left;">
 	<div class="col-md-8 col-md-offset-2">
 		{% block content %}
-			{% for article in contacts %}
-			<div style="color: black">
+			{% for article in page_obj %}
+			
 			<dl>
 				<dt><h2><a style="color: black" href="detail?id={{article.id}}" >{{ article.title}}</a></h2></dt>
 				<dd><p><a style="font-size: 18px" href="detail?id={{article.id}}">{{article.abstract}}.......</a>
@@ -47,23 +47,39 @@
 				<br>
 				</p></dd>
 			</dl>
-			</div>
 			{% endfor %}
-				<div class="pagination-simple"> 
+			
+				{% if is_paginated %}
+<nav aria-lable="Page navgation">
+	<ul class="pagination">
+  {% if first %}
+   <li> <a href="?page=1">1</a></li>
+  {% endif %}
+  {% if left %}
+    {% if left_has_more %}
+     <li><span>...</span></li>
+    {% endif %}
+    {% for i in left %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+    {% endfor %}
+  {% endif %}
+ <li class="active"> <a href="?page={{ page_obj.number }}" >{{ page_obj.number }}</a></li>
+  {% if right %}
+    {% for i in right %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+    {% endfor %}
+    {% if right_has_more %}
+        <li><span>...</span></li>
+    {% endif %}
+  {% endif %}
+  {% if last %}
+    <li><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
+  {% endif %}
+  {% endif %}
+</ul>
+</nav>
 
- 				{% if contacts.has_previous %} 
-
- 			<a href="?page={{contacts.previous_page_number }}">上一页</a> 
-
- 			{% endif %} 
-
- 			<span class="current">第{{ contacts.number }}页/共{{ contacts.paginator.num_pages }}页</span> 
-
- 			{% if contacts.has_next %} <a href="?page={{ contacts.next_page_number }}">下一页</a> 
-
- 			{% endif %}
-
- 			</div>
+				
 		{% endblock %}
 	</div>
 	</div>
