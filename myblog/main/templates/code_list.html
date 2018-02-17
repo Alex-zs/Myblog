@@ -1,0 +1,16 @@
+{% extends 'basemain.html' %}
+{% block title %}Alex Blog Code{% endblock %}
+{% block content %}
+{% for article in page_obj %}
+			
+			<dl>
+				<dt><h2><a style="color: black" href="detail?id={{article.id}}" >{{ article.title}}</a></h2></dt>
+				<dd><p><a style="font-size: 18px" href="detail?id={{article.id}}">{{article.abstract}}.......</a>
+				<div style="text-align: right;">{{article.update_time}}</div>
+				<br>
+				</p></dd>
+			</dl>
+			{% endfor %}
+			{% include 'pagination.html' %}	
+ {% endblock %}
+

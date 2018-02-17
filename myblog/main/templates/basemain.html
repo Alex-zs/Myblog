@@ -11,30 +11,27 @@
 	<script src="/static/js/vue.js"></script>
 	<!--csrf token-->
 	<script type="text/javascript" src="/static/js/csrf.js"></script>
-    <title>My Blog</title>
+    <title>{% block title %}My Blog{% endblock %}</title>
 </head>
 
 		
 <body>
 	<nav class="navbar " role="navgation">
-	<div class="container-fluid navbar-inverse navbar-fixed-top">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">My Blog</a>
+	<div id="nav" class="container-fluid navbar-inverse navbar-fixed-top">
+		<div class="navbar-brand">
+			Alex Blog
 		</div>
 		<div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="http://127.0.0.1:8000/">首页</a></li>
-			<li><a href="#">学无止境</a></li>
-			<li><a href="#">生活点滴</a></li>
+			<li><a href="http://127.0.0.1:8000/">首页</a></li>
+			<li><a href="http://127.0.0.1:8000/codelist">学无止境</a></li>
+			<li><a href="http://127.0.0.1:8000/lifelist">生活点滴</a></li>
 			<li><a href="#">留言板</a></li>
 			<li><a href="#">关于我</a></li>
 			</ul>
 	</div>
 </div>
 </nav>
-
-		</div>
-		</nav>				
 	<div class="container jumbotron" style="text-align: left;">
 	<div class="col-md-8 col-md-offset-2">
 		{% block content %}
@@ -48,45 +45,15 @@
 				</p></dd>
 			</dl>
 			{% endfor %}
-			
-				{% if is_paginated %}
-<nav aria-lable="Page navgation">
-	<ul class="pagination">
-  {% if first %}
-   <li> <a href="?page=1">1</a></li>
-  {% endif %}
-  {% if left %}
-    {% if left_has_more %}
-     <li><span>...</span></li>
-    {% endif %}
-    {% for i in left %}
-      <li><a href="?page={{ i }}">{{ i }}</a></li>
-    {% endfor %}
-  {% endif %}
- <li class="active"> <a href="?page={{ page_obj.number }}" >{{ page_obj.number }}</a></li>
-  {% if right %}
-    {% for i in right %}
-      <li><a href="?page={{ i }}">{{ i }}</a></li>
-    {% endfor %}
-    {% if right_has_more %}
-        <li><span>...</span></li>
-    {% endif %}
-  {% endif %}
-  {% if last %}
-    <li><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
-  {% endif %}
-  {% endif %}
-</ul>
-</nav>
-
-				
+			{% include 'pagination.html' %}	
 		{% endblock %}
 	</div>
 	</div>
 	
-	<div class="container text-center jumbotron  style="height: 30px;">
-		<p style="font-size: 10px;"> Powered by <b> Alex Chen</b><br>
-		 Copyright 2018<a href="mailto:330953853@qq.com"> 联系我们</a></p>
+	<div class="text-center">
+
+		<p style="font-size: 10px;"> Powered by <b> Alex Chen</b>
+		 Copyright 2018<a href="mailto:330953853@qq.com"> 联系我</a></p>
 
 	</div>
 

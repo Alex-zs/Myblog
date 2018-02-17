@@ -19,6 +19,8 @@ from django.contrib import admin
 from main import views as main
 
 urlpatterns = [
+    url(r'^lifelist/',main.LifeList.as_view(),name='lifelist'),
+    url(r'^codelist/',main.CodeView.as_view(),name='codelist'),
     url(r'^detail/',main.detail,name='detail'),
     url(r'^admin/', admin.site.urls),
     url(r'^$',main.indexView.as_view(),name='index'),
