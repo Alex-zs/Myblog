@@ -19,6 +19,7 @@ from django.contrib import admin
 from main import views as main
 
 urlpatterns = [
+    url(r'^search/$',main.search,name='search'),
     url(r'^lifelist/',main.LifeList.as_view(),name='lifelist'),
     url(r'^codelist/',main.CodeView.as_view(),name='codelist'),
     url(r'^detail/',main.detail,name='detail'),

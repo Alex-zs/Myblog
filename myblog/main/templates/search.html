@@ -1,0 +1,21 @@
+{% extends 'basemain.html' %}
+{% block title %}搜索{% endblock %}
+{% block content %}
+{% if error_msg %}
+<p>{{ error_msg }}</p>
+{% endif %}
+{% for article in search_list %}
+<dl>
+				<dt><h2><a style="color: black" href="detail?id={{article.id}}" >{{ article.title}}</a></h2></dt>
+				<dd><p><a style="font-size: 18px" href="detail?id={{article.id}}">{{article.abstract}}.......</a>
+				<div style="text-align: right;">{{article.update_time}}</div>
+				<br>
+				</p></dd>
+			</dl>
+{% empty %}
+<div class="container">
+	抱歉，没有找到您想要的文章！！
+</div>
+{% endfor %}
+{% endblock %}
+

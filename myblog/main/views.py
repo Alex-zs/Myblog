@@ -5,12 +5,24 @@ from blog.models import Article
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 import markdown2
 from django.views.generic import ListView
+from django.db.models import Q
 # Create your views here.
+
+def search(request):
+	q = request.GET.get('q')
+	error_msg = ''
+	if not q:
+		error_msg = "请输入关键词"
+		return render(request,'search.html',{'error_msg':error_msg})
+	search_list = Article.objects.filter(Q(title__icontains=q) | Q(content__icontains=q))
+	return render(request,'search.html',{'error_msg':error_msg,'search_list':search_list})
+
 
 def detail(request):
 	article_id = request.GET['id']
 	article_id = int(article_id)
 	article = Article.objects.get(id=article_id)
+	article.increase_views()
 	article.content = markdown2.markdown(article.content)
 	return render(request,'detail.html',{"article":article})
 

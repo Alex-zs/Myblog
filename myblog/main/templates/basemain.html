@@ -4,6 +4,7 @@
 
 	<!--bootstrap-->
 	<link href="/static/css/bootstrap.css" rel="stylesheet">
+	<link href="/static/css/bootstrap.css" rel="stylesheet">
 	<link href="/static/css/bootstrap-theme.css" rel="stylesheet">
 	<script src="/static/js/jquery.js"></script>
 	<script src="/static/js/bootstrap.js"></script>
@@ -18,18 +19,32 @@
 <body>
 	<nav class="navbar " role="navgation">
 	<div id="nav" class="container-fluid navbar-inverse navbar-fixed-top">
-		<div class="navbar-brand">
+		<div class="navbar-brand" style="font-size: 23px;font-family:fantasy;">
 			Alex Blog
 		</div>
 		<div>
-		<ul class="nav navbar-nav">
+		<ul class="nav navbar-nav" style="margin-left: 100px; font-size: 18px;">
 			<li><a href="http://127.0.0.1:8000/">首页</a></li>
-			<li><a href="http://127.0.0.1:8000/codelist">学无止境</a></li>
-			<li><a href="http://127.0.0.1:8000/lifelist">生活点滴</a></li>
+			<li><a href="/codelist">学无止境</a></li>
+			<li><a href="/lifelist">生活点滴</a></li>
 			<li><a href="#">留言板</a></li>
 			<li><a href="#">关于我</a></li>
 			</ul>
 	</div>
+	
+		<form role="search" method="get" id="searchform" action="/search">
+			<div  class="col-lg-3" style="margin-top: 6px; margin-left: 150px; position: relative;">
+		<div class="input-group">
+		<input type="search" class="form-control" name="q" placeholder="搜索" required>
+		<span class="input-group-btn">
+			<button class="btn btn-default" type="submit">搜索</button>
+		</span>
+		</div>
+		</div>
+	</form>
+		
+
+	
 </div>
 </nav>
 	<div class="container jumbotron" style="text-align: left;">

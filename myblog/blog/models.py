@@ -15,6 +15,11 @@ class Article(models.Model):
 	article_cate = models.CharField('类别',max_length=5,choices=category,default=study)
 	pub_date = models.DateTimeField('发表时间', auto_now_add=True, editable = True)
 	update_time = models.DateTimeField('更新时间',auto_now=True, null=True)
+	views = models.PositiveIntegerField(default=0)
+
+	def increase_views(self):
+		self.views += 1
+		self.save(update_fields=['views'])
 
 	def __str__(self):
 		return self.title
