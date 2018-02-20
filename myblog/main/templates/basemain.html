@@ -4,7 +4,7 @@
 
 	<!--bootstrap-->
 	<link href="/static/css/bootstrap.css" rel="stylesheet">
-	<link href="/static/css/bootstrap.css" rel="stylesheet">
+	<link  href="/static/css/font-awesome.min.css" rel="stylesheet">
 	<link href="/static/css/bootstrap-theme.css" rel="stylesheet">
 	<script src="/static/js/jquery.js"></script>
 	<script src="/static/js/bootstrap.js"></script>
@@ -19,7 +19,7 @@
 <body>
 	<nav class="navbar " role="navgation">
 	<div id="nav" class="container-fluid navbar-inverse navbar-fixed-top">
-		<div class="navbar-brand" style="font-size: 23px;font-family:fantasy;">
+		<div class="navbar-brand" style="font-size: 30px;font-family:Brush Script MT;">
 			Alex Blog
 		</div>
 		<div>
@@ -37,8 +37,9 @@
 		<div class="input-group">
 		<input type="search" class="form-control" name="q" placeholder="搜索" required>
 		<span class="input-group-btn">
-			<button class="btn btn-default" type="submit">搜索</button>
+			<button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 		</span>
+
 		</div>
 		</div>
 	</form>
@@ -53,9 +54,9 @@
 			{% for article in page_obj %}
 			
 			<dl>
-				<dt><h2><a style="color: black" href="detail?id={{article.id}}" >{{ article.title}}</a></h2></dt>
-				<dd><p><a style="font-size: 18px" href="detail?id={{article.id}}">{{article.abstract}}.......</a>
-				<div style="text-align: right;">{{article.update_time}}</div>
+				<dt><h4><a style="color: black" href="{{article.get_absolute_url}}" >{{ article.title}}</a></h4></dt>
+				<dd><p><a style="font-size: 14px;color:black;" href="{{article.get_absolute_url}}">{{article.abstract}}.......</a>
+				<div style="text-align: right;"> <i class="fa fa-eye" aria-hidden="true"></i> {{article.views}}&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> {{article.update_time|date:"Y-m-d"}}</div>
 				<br>
 				</p></dd>
 			</dl>
@@ -67,9 +68,8 @@
 	
 	<div class="text-center">
 
-		<p style="font-size: 10px;"> Powered by <b> Alex Chen</b>
+		<p style="font-size: 14px;"> Powered by <b> Alex Chen</b>
 		 Copyright 2018<a href="mailto:330953853@qq.com"> 联系我</a></p>
-
 	</div>
 
 	{% block vuejs %}

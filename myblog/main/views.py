@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
+from comments.forms import CommentForm
 import json
 from users.models import User
 from blog.models import Article
@@ -18,13 +19,13 @@ def search(request):
 	return render(request,'search.html',{'error_msg':error_msg,'search_list':search_list})
 
 
-def detail(request):
-	article_id = request.GET['id']
-	article_id = int(article_id)
-	article = Article.objects.get(id=article_id)
+def detail(request,id):
+	article = Article.objects.get(id=id)
 	article.increase_views()
-	article.content = markdown2.markdown(article.content)
-	return render(request,'detail.html',{"article":article})
+	form = CommentForm()
+	comment_list = article.comment_set.all().order_by('-created_time')
+	context = {'article':article,'form':form,'comment_list':comment_list}
+	return render(request,'detail.html',context=context)
 
 class LifeList(ListView):
 	model = Article

@@ -6,8 +6,8 @@
 {% endif %}
 {% for article in search_list %}
 <dl>
-				<dt><h2><a style="color: black" href="detail?id={{article.id}}" >{{ article.title}}</a></h2></dt>
-				<dd><p><a style="font-size: 18px" href="detail?id={{article.id}}">{{article.abstract}}.......</a>
+				<dt><h2><a style="color: black" href="{{article.get_absolute_url}}" >{{ article.title}}</a></h2></dt>
+				<dd><p><a style="font-size: 18px" href="{{article.get_absolute_url}}">{{article.abstract}}.......</a>
 				<div style="text-align: right;">{{article.update_time}}</div>
 				<br>
 				</p></dd>

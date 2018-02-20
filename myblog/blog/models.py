@@ -1,5 +1,6 @@
 from django.db import models
 from DjangoUeditor.models import UEditorField
+from django.urls import reverse
 
 class Article(models.Model):
 	study = 'code'
@@ -23,6 +24,9 @@ class Article(models.Model):
 
 	def __str__(self):
 		return self.title
+
+	def get_absolute_url(self):
+		return reverse('detail',kwargs={'id':self.id})
 
 
 

@@ -4,9 +4,9 @@
 {% for article in page_obj %}
 			
 			<dl>
-				<dt><h2><a style="color: black" href="/detail?id={{article.id}}" >{{ article.title}}</a></h2></dt>
-				<dd><p><a style="font-size: 18px" href="/detail?id={{article.id}}">{{article.abstract}}.......</a>
-				<div style="text-align: right;">{{article.update_time}}</div>
+				<dt><h4><a style="color: black" href="{{article.get_absolute_url}}" >{{ article.title}}</a></h4></dt>
+				<dd><p><a style="font-size: 14px;color:black;" href="{{article.get_absolute_url}}">{{article.abstract}}.......</a>
+				<div style="text-align: right;"> <i class="fa fa-eye" aria-hidden="true"></i> {{article.views}}&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> {{article.update_time|date:"Y-m-d"}}</div>
 				<br>
 				</p></dd>
 			</dl>

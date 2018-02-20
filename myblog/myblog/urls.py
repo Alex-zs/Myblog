@@ -16,15 +16,16 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from django.contrib import admin
-from main import views as main
+from main import views as main_views
 
 urlpatterns = [
-    url(r'^search/$',main.search,name='search'),
-    url(r'^lifelist/',main.LifeList.as_view(),name='lifelist'),
-    url(r'^codelist/',main.CodeView.as_view(),name='codelist'),
-    url(r'^detail/',main.detail,name='detail'),
+    url(r'^search/$',main_views.search,name='search'),
+    url(r'^lifelist/$',main_views.LifeList.as_view(),name='lifelist'),
+    url(r'^codelist/$',main_views.CodeView.as_view(),name='codelist'),
+    url(r'^detail/(?P<id>[0-9]+)/$',main_views.detail,name='detail'),
     url(r'^admin/', admin.site.urls),
-    url(r'^$',main.indexView.as_view(),name='index'),
+    url(r'^$',main_views.indexView.as_view(),name='index'),
     url(r'^ueditor/',include('DjangoUeditor.urls' )),
-]
+    url(r'',include('comments.urls')),
+    ]
 

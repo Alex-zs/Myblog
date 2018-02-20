@@ -7,5 +7,48 @@
 </div>
 <br><br>
 <div><p style="font-size: 20px">{{article.content|safe}}</p></div>
+<form action="{% url 'comments:article_comment' article.id %}" class="bs-example bs-example-form" method="post">
+	{% csrf_token %}
+	<div class="form-group">
+    <p><strong>发表评论</strong></p>
+    <div class="input-group">
+      <span class="input-group-addon">姓名</span>
+      <input type="text" name="name" placeholder="请填写你的姓名" style="width: 200px" class="form-control" maxlength="20" required id="id_name" />
+      
+      {{ form.name.errors }}
+    </div>
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon">邮箱</span>
+      <input type="email" placeholder="请填写你的邮箱" name="email" style="width: 200px" class="form-control" maxlength="30" required id="id_email" />
+      {{ form.email.errors }}
+    </div>
+    <br>
+    <div class="input-group">
+      评论：
+      <br>
+      <textarea name="text" cols="90" placeholder="发表你的看法" rows="6" style="resize: none;" required id="id_text">
+</textarea>
+      {{ form.text.errors }}
+      <br>
+      <button type="submit" class="btn">发表</button>
+    </div>
+  </div> 
+</form>
+<p><strong>评论列表</strong></p>
+<ul class="list-group">
+  {% for comment in comment_list %}
+  <li class="list-group-item">
+    <span><strong style="font-size:18px;font-family:sans-serif;">{{ comment.name }} · </strong></span>
+    <time class="submit-date">{{ comment.created_time }}</time>
+    <div class="text">
+      <br>
+     <p style="font-size: 16px;font-family:lucida grande,Hiragino Sans GB;"> {{ comment.text }}</p>
+    </div>
+  </li>
+  {% empty %}
+  <p><strong>暂无评论</strong></p>
+  {% endfor %}
+</ul>
 {% endblock %}
 
