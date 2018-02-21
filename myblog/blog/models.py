@@ -10,7 +10,7 @@ class Article(models.Model):
 		(life,'生活感悟'),
 		)
 	title = models.CharField('标题',max_length=256)
-	content = UEditorField('内容',toolbars="full", imagePath="static/img/", filePath="", upload_settings={"imageMaxSize":1204000},
+	content = UEditorField('内容',toolbars="full", imagePath="static/img/", filePath="static/img/", upload_settings={"imageMaxSize":1204000},
              settings={},)
 	abstract = models.CharField('摘要',max_length=256,null=True,blank=True)
 	article_cate = models.CharField('类别',max_length=5,choices=category,default=study)

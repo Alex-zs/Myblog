@@ -188,6 +188,9 @@ class indexView(ListView):
 		is_paginated = context.get('is_paginated')
 		pagination_data = self.pagination_data(paginator, page, is_paginated)
 		context.update(pagination_data)
+		goodview_list = Article.objects.all().order_by('-views')
+		goodview_list = goodview_list[:6]
+		context.update({'goodview_list':goodview_list})
 		return context
 
 	def pagination_data(self, paginator, page, is_paginated):

@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4><a style="color: black" href="{{article.get_absolute_url}}" >{{ article.title}}</a></h4>
+	</div>
+	<div class="panel-body">
+		<dl>
+				<dd><p><a style="font-size: 14px;color:black;" href="{{article.get_absolute_url}}">{{article.abstract}}.......</a>
+				
+				</p></dd>
+			</dl>
+	</div>
+	<div class="panel-footer">
+		<div style="text-align: right;"> <i class="fa fa-eye" aria-hidden="true"></i> {{article.views}}&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> {{article.update_time|date:"Y-m-d"}}</div>
+	</div>
+</div>
+
+				

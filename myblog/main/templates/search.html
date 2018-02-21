@@ -5,13 +5,7 @@
 <p>{{ error_msg }}</p>
 {% endif %}
 {% for article in search_list %}
-<dl>
-				<dt><h2><a style="color: black" href="{{article.get_absolute_url}}" >{{ article.title}}</a></h2></dt>
-				<dd><p><a style="font-size: 18px" href="{{article.get_absolute_url}}">{{article.abstract}}.......</a>
-				<div style="text-align: right;">{{article.update_time}}</div>
-				<br>
-				</p></dd>
-			</dl>
+{% include 'blog_list.html' %}
 {% empty %}
 <div class="container">
 	抱歉，没有找到您想要的文章！！

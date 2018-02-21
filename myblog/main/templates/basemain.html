@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-
+	{% load staticfiles %}
 	<!--bootstrap-->
 	<link href="/static/css/bootstrap.css" rel="stylesheet">
 	<link  href="/static/css/font-awesome.min.css" rel="stylesheet">
@@ -17,8 +17,8 @@
 
 		
 <body>
-	<nav class="navbar " role="navgation">
-	<div id="nav" class="container-fluid navbar-inverse navbar-fixed-top">
+	<nav class="navbar" role="navgation">
+	<div id="nav" class="navbar-fixed-top navbar-default">
 		<div class="navbar-brand" style="font-size: 30px;font-family:Brush Script MT;">
 			Alex Blog
 		</div>
@@ -33,7 +33,7 @@
 	</div>
 	
 		<form role="search" method="get" id="searchform" action="/search">
-			<div  class="col-lg-3" style="margin-top: 6px; margin-left: 150px; position: relative;">
+			<div  class="col-lg-2" style="margin-top: 7px;margin-left:200px;">
 		<div class="input-group">
 		<input type="search" class="form-control" name="q" placeholder="搜索" required>
 		<span class="input-group-btn">
@@ -48,29 +48,45 @@
 	
 </div>
 </nav>
-	<div class="container jumbotron" style="text-align: left;">
-	<div class="col-md-8 col-md-offset-2">
+	<div class="container">
+		<div class=" col-md-9 ">
 		{% block content %}
 			{% for article in page_obj %}
 			
-			<dl>
-				<dt><h4><a style="color: black" href="{{article.get_absolute_url}}" >{{ article.title}}</a></h4></dt>
-				<dd><p><a style="font-size: 14px;color:black;" href="{{article.get_absolute_url}}">{{article.abstract}}.......</a>
-				<div style="text-align: right;"> <i class="fa fa-eye" aria-hidden="true"></i> {{article.views}}&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> {{article.update_time|date:"Y-m-d"}}</div>
-				<br>
-				</p></dd>
-			</dl>
+			{% include 'blog_list.html' %}
+			
 			{% endfor %}
 			{% include 'pagination.html' %}	
 		{% endblock %}
 	</div>
+	<div class="col-md-3 panel panel-default">
+
+		<div style="text-align: center;" class="panle-title">
+		<img src="/static/img/IMG_2100.JPG" class="img-circle" style="width: 80px;height: 80px;">
+		<br><br>
+		<p style="font-size: 25px;font-family:fantasy;"><strong>Alex Chen</strong></p>
+		</div>
+
+		
+		<div >
+			{% for article in goodview_list %}
+			<ul>
+				<caption>热门文章</caption>
+				<li><a style="color: black;" href="{{article.get_absolute_url}}">{{ article.title }}</a></li>
+			</ul>
+			
+			{% endfor %}
+		</div>
 	</div>
-	
-	<div class="text-center">
+	</div>
+	<footer class="panel-footer">
+		<div class="container text-center ">
 
 		<p style="font-size: 14px;"> Powered by <b> Alex Chen</b>
-		 Copyright 2018<a href="mailto:330953853@qq.com"> 联系我</a></p>
+		<br> Copyright 2018<a href="mailto:330953853@qq.com">联系我</a></p>
 	</div>
+	</footer>
+	
 
 	{% block vuejs %}
  	{% endblock %}
