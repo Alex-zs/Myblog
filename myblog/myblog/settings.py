@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'blog',
     'DjangoUeditor',
     'comments',
+    'messageboard',
 ]
 
 AUTH_USER_MODEL = 'users.User'

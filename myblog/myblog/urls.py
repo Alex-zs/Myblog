@@ -19,6 +19,7 @@ from django.contrib import admin
 from main import views as main_views
 from django.conf.urls.static import static
 from django.conf import settings
+from messageboard import views as messageboard_views
 
 urlpatterns = [
     url(r'^search/$',main_views.search,name='search'),
@@ -29,5 +30,6 @@ urlpatterns = [
     url(r'^$',main_views.indexView.as_view(),name='index'),
     url(r'^ueditor/',include('DjangoUeditor.urls' )),
     url(r'',include('comments.urls')),
+    url(r'^messageboard/$',messageboard_views.Messageboard,name='message'),
     ]
 

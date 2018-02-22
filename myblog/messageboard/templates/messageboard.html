@@ -1,0 +1,52 @@
+{% extends 'basemain.html' %}
+{% block content %}
+<div class="well">
+<form action="/messageboard/" method="POST" >
+  {% csrf_token %}
+  <p style="font-size: 20px;">留言板</p>
+     
+      
+      	<script id="id_content" name="content"  style="display: inline-block;" type="text/plain">
+     
+ </script>
+     
+      <br>
+       <div class="input-group">
+      	<span class="input-group-addon">名字</span>
+      	<input type="text" name="name" style="width: 200px" class="form-control" maxlength="20" required id="id_name" />
+      </div>
+      <br>
+      <div class="input-group">
+      	<span class="input-group-addon">邮箱</span>
+      	<input type="email" name="email" style="width: 200px" class="form-control" maxlength="20" required id="id_email" />
+      </div>
+<script type="text/javascript">
+    
+    var id_content = UE.getEditor('id_content',{'toolbars': [['source', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', 'formatmatch', 'autotypeset', '|', 'forecolor', 'backcolor', '|', 'link', 'unlink', '|', 'simpleupload', 'attachment']], 'initialFrameWidth': 700, 'initialFrameHeight': 200, 'serverUrl': '/ueditor/controller/?imageMaxSize=1204000&imagePathFormat=static%2Fimg%2F&filePathFormat=static%2Fimg%2F'});
+     id_content.ready(function(){
+         
+     });
+</script>
+   
+     
+      <button type="submit" class="btn btn-primary">发表</button>
+    
+ 
+</form>
+</div>
+<p style="font-size: 20px;"><strong>留言</strong></p>
+<ul class="list-group">
+  {% for message in message_list %}
+  <li class="list-group-item">
+    <span><strong style="font-size:18px;font-family:sans-serif;">{{ message.name }} · </strong></span>
+    <time class="submit-date">{{ message.create_time|date:"Y-m-d H:i:s" }}</time>
+    <div class="text">
+      <br>
+     <p style="font-size: 16px;font-family:lucida grande,Hiragino Sans GB;"> {{ message.content|safe }}</p>
+    </div>
+  </li>
+  {% empty %}
+  <p><strong>暂无评论</strong></p>
+  {% endfor %}
+</ul>
+{% endblock %}

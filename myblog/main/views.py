@@ -16,7 +16,11 @@ def search(request):
 		error_msg = "请输入关键词"
 		return render(request,'search.html',{'error_msg':error_msg})
 	search_list = Article.objects.filter(Q(title__icontains=q) | Q(content__icontains=q))
-	return render(request,'search.html',{'error_msg':error_msg,'search_list':search_list})
+	context = {'search_list':search_list,'error_msg':error_msg}
+	goodview_list = Article.objects.all().order_by('-views')
+	goodview_list = goodview_list[:6]
+	context.update({'goodview_list':goodview_list})
+	return render(request,'search.html',context=context)
 
 
 def detail(request,id):
@@ -25,6 +29,9 @@ def detail(request,id):
 	form = CommentForm()
 	comment_list = article.comment_set.all().order_by('-created_time')
 	context = {'article':article,'form':form,'comment_list':comment_list}
+	goodview_list = Article.objects.all().order_by('-views')
+	goodview_list = goodview_list[:6]
+	context.update({'goodview_list':goodview_list})
 	return render(request,'detail.html',context=context)
 
 class LifeList(ListView):
@@ -44,6 +51,9 @@ class LifeList(ListView):
 		is_paginated = context.get('is_paginated')
 		pagination_data = self.pagination_data(paginator, page, is_paginated)
 		context.update(pagination_data)
+		goodview_list = Article.objects.all().order_by('-views')
+		goodview_list = goodview_list[:6]
+		context.update({'goodview_list':goodview_list})
 		return context
 
 	def pagination_data(self, paginator, page, is_paginated):
@@ -116,6 +126,9 @@ class CodeView(ListView):
 		is_paginated = context.get('is_paginated')
 		pagination_data = self.pagination_data(paginator, page, is_paginated)
 		context.update(pagination_data)
+		goodview_list = Article.objects.all().order_by('-views')
+		goodview_list = goodview_list[:6]
+		context.update({'goodview_list':goodview_list})
 		return context
 
 	def pagination_data(self, paginator, page, is_paginated):
