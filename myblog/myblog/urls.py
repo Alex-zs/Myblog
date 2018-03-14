@@ -22,6 +22,7 @@ from django.conf import settings
 from messageboard import views as messageboard_views
 
 urlpatterns = [
+
     url(r'^search/$',main_views.search,name='search'),
     url(r'^lifelist/$',main_views.LifeList.as_view(),name='lifelist'),
     url(r'^codelist/$',main_views.CodeView.as_view(),name='codelist'),
@@ -32,4 +33,6 @@ urlpatterns = [
     url(r'',include('comments.urls')),
     url(r'^messageboard/$',messageboard_views.Messageboard,name='message'),
     ]
+
+
 
