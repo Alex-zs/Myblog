@@ -20,6 +20,10 @@ from main import views as main_views
 from django.conf.urls.static import static
 from django.conf import settings
 from messageboard import views as messageboard_views
+import django.views.static
+from myblog.settings import BASE_DIR
+import os
+from django.conf.urls import handler404, handler500
 
 urlpatterns = [
 
@@ -32,6 +36,7 @@ urlpatterns = [
     url(r'^ueditor/',include('DjangoUeditor.urls' )),
     url(r'',include('comments.urls')),
     url(r'^messageboard/$',messageboard_views.Messageboard,name='message'),
+    url(r'static/(?P<path>.*)', django.views.static.serve, {'document_root': os.path.join(BASE_DIR, 'static')}),
     ]
 
 

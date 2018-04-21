@@ -22,15 +22,18 @@
 <body>
 	<nav class="navbar" role="navgation">
 	<div id="nav" class="navbar-fixed-top navbar-default">
+		<a href="/">
 		<div class="navbar-brand" style="font-size: 30px;font-family:Brush Script MT;">
 			Alex Blog
 		</div>
+	</a>
 		<div>
 		<ul class="nav navbar-nav" style="margin-left: 100px; font-size: 18px;">
-			<li><a href="http://127.0.0.1:8000/">首页</a></li>
+			<li><a href="/">首页</a></li>
 			<li><a href="/codelist">学无止境</a></li>
 			<li><a href="/lifelist">生活点滴</a></li>
 			<li><a href="/messageboard">留言板</a></li>
+			<li><a href="/photolist">相册</a></li>
 			</ul>
 	</div>
 	
@@ -65,7 +68,7 @@
 
 		<div style="text-align: center;" class="panle-title">
 			<br><br>
-		<img src="/static/img/IMG_2100.JPG" class="img-circle" style="width: 80px;height: 80px;">
+		<img src="/static/img/boy_20180222151606_397.jpg" class="img-circle" style="width: 80px;height: 80px;">
 		<br><br>
 		<p style="font-size: 25px;font-family:Bradley Hand;"><strong>Alex Chen</strong></p>
 		</div>
@@ -95,5 +98,10 @@
 
 	{% block vuejs %}
  	{% endblock %}
+ 	{% if errors %}
+ 	<script>
+ 		alert('{{errors}}')
+ 	</script>
+ 	{% endif %}
 </body>
 </html>

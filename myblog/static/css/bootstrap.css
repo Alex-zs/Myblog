@@ -10,6 +10,9 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+div{
+    word-break:break-all;
+}
 body {
   margin: 0;
 }

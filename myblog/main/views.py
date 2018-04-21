@@ -1,7 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from comments.forms import CommentForm
 import json
-from users.models import User
 from blog.models import Article
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 import markdown2
@@ -257,5 +256,4 @@ class indexView(ListView):
         }
 
 		return data
-
 
