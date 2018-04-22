@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from comments.forms import CommentForm
 import json
 from blog.models import Article
@@ -6,6 +6,7 @@ from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 import markdown2
 from django.views.generic import ListView
 from django.db.models import Q
+from django.http import HttpResponseRedirect  
 # Create your views here.
 
 def search(request):
@@ -256,4 +257,10 @@ class indexView(ListView):
         }
 
 		return data
+
+def photoGroup(request):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect('/')
+	else:
+		return redirect('/')
 

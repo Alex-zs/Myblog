@@ -2,12 +2,15 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import Message_list
 from blog.models import Article
 from .forms import Message
+from lxml.html.clean import clean_html
 
 def Messageboard(request):
 	message_list = Message_list.objects.all().order_by('-create_time')
 	if request.method == 'POST':
 		form = Message(request.POST)
-		form.save()
+		message = form.save(commit=False)
+		message.content = clean_html(message.content)
+		message.save()
 	else:
 		form = Message()
 

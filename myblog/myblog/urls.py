@@ -26,7 +26,7 @@ import os
 from django.conf.urls import handler404, handler500
 
 urlpatterns = [
-
+    url(r'^photolist/$',main_views.photoGroup,name='photoGroup'),
     url(r'^search/$',main_views.search,name='search'),
     url(r'^lifelist/$',main_views.LifeList.as_view(),name='lifelist'),
     url(r'^codelist/$',main_views.CodeView.as_view(),name='codelist'),
@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'',include('comments.urls')),
     url(r'^messageboard/$',messageboard_views.Messageboard,name='message'),
     url(r'static/(?P<path>.*)', django.views.static.serve, {'document_root': os.path.join(BASE_DIR, 'static')}),
+    url(r'^accounts/', include('users.urls')),
     ]
 
 
