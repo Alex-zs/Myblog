@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^lifelist/$',main_views.LifeList.as_view(),name='lifelist'),
     url(r'^codelist/$',main_views.CodeView.as_view(),name='codelist'),
     url(r'^detail/(?P<id>[0-9]+)/$',main_views.detail,name='detail'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^ckt/admin/', admin.site.urls),
     url(r'^$',main_views.indexView.as_view(),name='index'),
     url(r'^ueditor/',include('DjangoUeditor.urls' )),
     url(r'',include('comments.urls')),
