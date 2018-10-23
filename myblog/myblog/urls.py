@@ -26,18 +26,18 @@ import os
 from django.conf.urls import handler404, handler500
 
 urlpatterns = [
-    url(r'^photolist/$',main_views.photoGroup,name='photoGroup'),
-    url(r'^search/$',main_views.search,name='search'),
-    url(r'^lifelist/$',main_views.LifeList.as_view(),name='lifelist'),
-    url(r'^codelist/$',main_views.CodeView.as_view(),name='codelist'),
-    url(r'^detail/(?P<id>[0-9]+)/$',main_views.detail,name='detail'),
-    url(r'^ckt/admin/', admin.site.urls),
-    url(r'^$',main_views.indexView.as_view(),name='index'),
-    url(r'^ueditor/',include('DjangoUeditor.urls' )),
-    url(r'',include('comments.urls')),
-    url(r'^messageboard/$',messageboard_views.Messageboard,name='message'),
-    url(r'static/(?P<path>.*)', django.views.static.serve, {'document_root': os.path.join(BASE_DIR, 'static')}),
-    url(r'^accounts/', include('users.urls')),
+    url(r'^blog/photolist/$',main_views.photoGroup,name='photoGroup'),
+    url(r'^blog/search/$',main_views.search,name='search'),
+    url(r'^blog/lifelist/$',main_views.LifeList.as_view(),name='lifelist'),
+    url(r'^blog/codelist/$',main_views.CodeView.as_view(),name='codelist'),
+    url(r'^blog/detail/(?P<id>[0-9]+)/$',main_views.detail,name='detail'),
+    url(r'^blog/ckt/admin/', admin.site.urls),
+    url(r'^blog/$',main_views.indexView.as_view(),name='index'),
+    url(r'^blog/ueditor/',include('DjangoUeditor.urls' )),
+    url(r'blog/',include('comments.urls')),
+    url(r'^blog/messageboard/$',messageboard_views.Messageboard,name='message'),
+    url(r'blog/static/(?P<path>.*)', django.views.static.serve, {'document_root': os.path.join(BASE_DIR, 'static')}),
+    url(r'^blog/accounts/', include('users.urls')),
     ]
 
 
