@@ -1,4 +1,4 @@
-Django==1.11.9
+Django==1.11.23
 chardet==3.0.4
 django-appconf==1.0.2
 django-model-utils==3.1.1
